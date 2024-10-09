@@ -5,7 +5,7 @@ A transformer-based model that generates world land-use layouts given user contr
 Land-use refers to the way humans utilize and manage land, e.g., residential, farmland, and forest.
 ### Read [[Paper](https://link.springer.com/content/pdf/10.1007/s41095-023-0365-1.pdf)]
 
-<img src="assets/overview.png" width="80%"/>
+<img src="assets/overview.png" width="100%"/>
 
 
 ## Setup Environment
