@@ -1,0 +1,57 @@
+{
+  "train_dataset": {
+    "data_root": "data/landuse_geoframes_w512_s256/samples_s32/",
+    "data_file": "data/landuse_geoframes_w512_s256/train.txt",
+    "use_geo_measures": true,
+    "use_plan": false,
+    "use_random_comb": true
+  },
+  "valid_dataset": {
+    "data_root": "data/landuse_geoframes_w512_s256/samples_s32/",
+    "data_file": "data/landuse_geoframes_w512_s256/val.txt",
+    "use_geo_measures": true,
+    "use_plan": false,
+    "use_random_comb": true
+  },
+  "model_params": {
+    "layer_num": 6,
+    "model_dim": 64,
+    "head_num": 8,
+    "enc_layer_num": 6,
+    "comp_enc_layer_num": 3
+  },
+  "train_config": {
+    "device": "cuda",
+    "num_gpus": 1,
+    "world_size": 1,
+    "validation_batch": 8,
+    "num_workers": 8,
+    "batch_size": 16,
+    "learning_rate": 1e-4,
+    "resume_path": "ckpts/lutf_g/latest.pt",
+    "save_dir": "ckpts/lutf_g/",
+    "epochs": 10000,
+    "save_cycle": 50,
+    "print_cycle": 10,
+    "loss_weight": {
+      "geo_loss": 0.1
+    }
+  },
+  "test_config": {
+    "device": "cuda",
+    "num_gpus": 1,
+    "world_size": 1,
+    "num_workers": 8,
+    "batch_size": 16,
+    "ckpt_path": "ckpts/lutf_g/latest.pt",
+    "ckpt_root": "ckpts/lutf_g/",
+    "output_root": "results/lutf_g/"
+  },
+  "data_format": {
+    "width": 32,
+    "height": 32,
+    "landuse_list": ["residential", "farmland", "industrial", "meadow", "grass", "retail", "recreation_ground", "forest", "commercial", "railway", "cemetery"],
+    "class_names": ["mask", "none", "residential", "farmland", "industrial", "meadow", "grass", "retail", "recreation_ground", "forest", "commercial", "railway", "cemetery"]
+  },
+  "trainer": "src.trainer.lutf_g_trainer.LUTFGeoTrainer"
+}
